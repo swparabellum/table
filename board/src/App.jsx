@@ -9,28 +9,29 @@ function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('127.0.0.1/table')
+    axios.get('${process.env.REACT_APP_BASE_URL}/table')
       .then(response => {
-        setUsers(response.data);
-        console.log(response.data);
-        // You can also map through the users to display them in the table
-        // Example: setUsers(response.data.map(user => ({ id: user.id, name: user.name, email: user.email, phone: user.phone, website: user.website })));
+          setUsers(response.data.result);
+          console.log(response.data.result);
       })
       .catch(error => {
-        console.error('There was an error fetching the data!', error);
+        console.error(error);
       });
-  });
+  }, []);
+
   return (
     <>
-    <table className='table table-striped'>
-      <thead>
-        <th>id</th>
-        <th>name</th>
-        <th>email</th>
-        <th>phone</th>
-        <th>website</th>
-      </thead>
-      <tbody>
+      <table className='table table-striped'>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>website</th>
+          </tr>
+        </thead>
+        <tbody>
           {users.map(user => (
             <tr key={user.id}>
               <td>{user.id}</td>
@@ -40,8 +41,8 @@ function App() {
               <td>{user.website}</td>
             </tr>
           ))}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
     </>
   );
 }
