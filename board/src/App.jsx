@@ -9,10 +9,10 @@ function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('${process.env.REACT_APP_BASE_URL}/table')
+    axios.get(`${import.meta.env.VITE_BASE_URL}/table`)
       .then(response => {
+        console.log(" :: ",response.data.result);
           setUsers(response.data.result);
-          console.log(response.data.result);
       })
       .catch(error => {
         console.error(error);
