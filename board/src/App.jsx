@@ -21,6 +21,11 @@ function App() {
 
   return (
     <>
+      <div className='input-group'>
+        <span className='input-group-text'>name</span>
+        <input type='text' className='form-control' placeholder='name' />
+      </div>
+
       <table className='table table-striped'>
         <thead>
           <tr>
