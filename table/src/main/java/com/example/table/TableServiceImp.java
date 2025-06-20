@@ -21,8 +21,16 @@ public class TableServiceImp implements TableService {
         boolean status = false;
         List<TableEntity> tlist;
         String msg = "";
-        tlist = tableRepository.findAll();
-        System.out.println("list of users: "+tlist);
+
+//        System.out.println("list of users: "+tlist);
+        try{
+            status = true;
+            tlist = tableRepository.findAll();
+        }catch (Exception e){
+            tlist = null;
+        }
+
+
         return TableDTO.builder().status(status).result(tlist).message(msg).build();
 
     }
@@ -32,18 +40,26 @@ public class TableServiceImp implements TableService {
         boolean status = false;
         String msg = "";
 
-        long counter = tableRepository.count();
-        System.out.println("counter: "+counter);
-        System.out.println("userDTO: "+userDTO);
-        TableEntity tableEntity = TableEntity.builder()
-                //.id((int) (counter+1))
-                .name(userDTO.getName())
-                .email(userDTO.getEmail())
-                .phone(userDTO.getPhone())
-                .website(userDTO.getWebsite())
-                .build();
-        System.out.println("tableEntity: "+tableEntity);
-        tableRepository.save(tableEntity);
+//        long counter = tableRepository.count();
+//        System.out.println("counter: "+counter);
+//        System.out.println("userDTO: "+userDTO);
+
+        try{
+            status = true;
+            TableEntity tableEntity = TableEntity.builder()
+                    //.id((int) (counter+1))
+                    .name(userDTO.getName())
+                    .email(userDTO.getEmail())
+                    .phone(userDTO.getPhone())
+                    .website(userDTO.getWebsite())
+                    .build();
+//        System.out.println("tableEntity: "+tableEntity);
+            tableRepository.save(tableEntity);
+        }catch (Exception e){
+
+        }
+
+
         return TableDTO.builder().status(status).result("").message(msg).build();
     }
 }

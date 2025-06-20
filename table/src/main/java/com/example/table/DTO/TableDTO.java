@@ -9,6 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 public class TableDTO {
 
+    //값 반환을 위한 DTO
+
     private boolean status;
     private Object result;
     private String message;
