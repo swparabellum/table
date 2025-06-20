@@ -1,13 +1,9 @@
 package com.example.table;
 
-import com.example.table.Domain.tableEntity;
+import com.example.table.DTO.TableDTO;
+import com.example.table.DTO.UserDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/table")
@@ -21,5 +17,10 @@ public class TableController {
     @GetMapping
     public TableDTO table(){
         return tableService.getList();
+    }
+
+    @PostMapping
+    public TableDTO addTable(@RequestBody UserDTO userDTO){
+        return tableService.register(userDTO);
     }
 }

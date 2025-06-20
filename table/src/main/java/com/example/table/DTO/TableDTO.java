@@ -1,6 +1,5 @@
-package com.example.table;
+package com.example.table.DTO;
 
-import jakarta.persistence.Column;
 import lombok.*;
 
 @Getter
