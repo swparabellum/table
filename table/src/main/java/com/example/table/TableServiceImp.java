@@ -56,7 +56,7 @@ public class TableServiceImp implements TableService {
 //        System.out.println("tableEntity: "+tableEntity);
             tableRepository.save(tableEntity);
         }catch (Exception e){
-
+            System.out.println(e);
         }
 
 

@@ -6,6 +6,7 @@ import axios from 'axios';
 
 
 function App() {
+
   const [users, setUsers] = useState([]);
   const [userData, setUserData] = useState({
     name: '',
@@ -13,44 +14,63 @@ function App() {
     phone: '',
     website: ''
   });
+  
+  const changeEvent = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BASE_URL}/table`)
       .then(response => {
-        console.log(" :: ",response.data.result);
+        // console.log(" :: ",response);
           setUsers(response.data.result);
       })
       .catch(error => {
-        console.error(error);
+        console.error("error :: ",error);
       });
   }, []);
 
-  const SubmitEvent = (e) => {
+  const submitEvent = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', )
+    axios.post(`${import.meta.env.VITE_BASE_URL}/table`, userData)
+      // .then(response => {
+      //   // 성공 시 목록 갱신
+      //   return axios.get(`${import.meta.env.VITE_BASE_URL}/table`);
+      // })
+      // .then(response => {
+      //   setUsers(response.data.result);
+      //   setUserData({ name: '', email: '', phone: '', website: '' });
+      // })
+      .then(response => {
+        console.log(" success :: ",response);
+      })
+      .catch(error => {
+        console.error("error :: ",error);
+      });
+  };
 
-    
-  }
 
   return (
     <>
-<form onSubmit={SubmitEvent}>
+<form onSubmit={submitEvent}>
   <div className='input-group'>
     <span className='input-group-text'>name</span>
-    <input type='text' className='form-control' placeholder='name' required name="name" value={userData.name} onChange={handleChange} />
+    <input type='text' className='form-control' placeholder='name' required name="name" onChange={changeEvent} value={userData.name} />
   </div>
   <div className='input-group'>
     <span className='input-group-text'>email</span>
-    <input type='text' className='form-control' placeholder='email' required name="email" value={userData.email} onChange={handleChange} />
+    <input type='text' className='form-control' placeholder='email' required name="email" onChange={changeEvent} value={userData.email} />
   </div>
   <div className='input-group'>
     <span className='input-group-text'>phone</span>
-    <input type='text' className='form-control' placeholder='phone' required name="phone" value={userData.phone} onChange={handleChange} />
+    <input type='text' className='form-control' placeholder='phone' required name="phone" onChange={changeEvent} value={userData.phone} />
   </div>
   <div className='input-group'>
     <span className='input-group-text'>website</span>
-    <input type='text' className='form-control' placeholder='website' required name="website" value={userData.website} onChange={handleChange} />
+    <input type='text' className='form-control' placeholder='website' required name="website" onChange={changeEvent} value={userData.website} />
   </div>
   <button type='submit' className='btn btn-primary'>Submit</button>
 </form>
