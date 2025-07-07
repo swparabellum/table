@@ -7,4 +7,6 @@ public interface TableService {
     TableDTO getList();
 
     TableDTO register(UserDTO userDTO);
+
+    TableDTO delete(UserDTO userDTO);
 }

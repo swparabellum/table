@@ -93,6 +93,7 @@ function App() {
               <td>{user.email}</td>
               <td>{user.phone}</td>
               <td>{user.website}</td>
+              <td><button className='btn btn-danger' onClick={delEvent}>삭제</button></td>
             </tr>
           ))}
         </tbody>

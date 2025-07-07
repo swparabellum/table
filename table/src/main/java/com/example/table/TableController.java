@@ -23,4 +23,9 @@ public class TableController {
     public TableDTO addTable(@RequestBody UserDTO userDTO){
         return tableService.register(userDTO);
     }
+
+    @DeleteMapping
+    public TableDTO deleteTable(@RequestBody UserDTO userDTO){
+        return tableService.delete(userDTO);
+    }
 }

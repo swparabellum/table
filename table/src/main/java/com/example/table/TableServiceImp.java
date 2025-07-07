@@ -7,6 +7,7 @@ import com.example.table.Domain.TableEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,4 +63,17 @@ public class TableServiceImp implements TableService {
 
         return TableDTO.builder().status(status).result("").message(msg).build();
     }
+
+    @Override
+    public TableDTO delete(UserDTO userDTO) {
+        boolean status = false;
+        String msg = "";
+        try{
+            List<TableEntity> list = tableRepository.findByPhone(userDTO.getPhone());
+            tableRepository.delete((TableEntity) list); // 제대로 동작하는지 확인해야함.
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        return TableDTO.builder().status(status).result("").message(msg).build();    }
 }
