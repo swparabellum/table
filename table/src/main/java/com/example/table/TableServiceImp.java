@@ -65,12 +65,11 @@ public class TableServiceImp implements TableService {
     }
 
     @Override
-    public TableDTO delete(UserDTO userDTO) {
+    public TableDTO delete(int id) {
         boolean status = false;
         String msg = "";
         try{
-            List<TableEntity> list = tableRepository.findByPhone(userDTO.getPhone());
-            tableRepository.delete((TableEntity) list); // 제대로 동작하는지 확인해야함.
+            tableRepository.deleteById(id); // 제대로 동작하는지 확인해야함.
         }catch (Exception e){
             System.out.println(e);
         }

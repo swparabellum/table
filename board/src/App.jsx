@@ -55,7 +55,7 @@ function App() {
   const delEvent = (e,user) => {
     e.preventDefault();
     console.log("user value is :: ",user);
-    axios.delete(`${import.meta.env.VITE_BASE_URL}/table/`,user)
+    axios.delete(`${import.meta.env.VITE_BASE_URL}/table/${user.id}`)
       .then(response => {
         console.log(" delete success :: ",response);
         return axios.get(`${import.meta.env.VITE_BASE_URL}/table`);
@@ -106,7 +106,7 @@ function App() {
               <td>{user.email}</td>
               <td>{user.phone}</td>
               <td>{user.website}</td>
-              <td><button className='btn btn-danger' onClick={(e) => delEvent(e,user)}>삭제</button></td>
+              <td><button className='btn btn-danger' onClick={(e) => {delEvent(e,user)}}>삭제</button></td>
             </tr>
           ))}
         </tbody>

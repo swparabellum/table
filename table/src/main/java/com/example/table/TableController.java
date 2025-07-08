@@ -24,8 +24,8 @@ public class TableController {
         return tableService.register(userDTO);
     }
 
-    @DeleteMapping
-    public TableDTO deleteTable(@RequestBody UserDTO userDTO){
-        return tableService.delete(userDTO);
+    @DeleteMapping({"/{id}"})
+    public TableDTO deleteTable(@PathVariable int id){
+        return tableService.delete(id);
     }
 }

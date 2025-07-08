@@ -8,5 +8,5 @@ public interface TableService {
 
     TableDTO register(UserDTO userDTO);
 
-    TableDTO delete(UserDTO userDTO);
+    TableDTO delete(int id);
 }
