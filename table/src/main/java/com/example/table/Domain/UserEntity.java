@@ -4,7 +4,7 @@ package com.example.table.Domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
+@Data
 @Entity(name="members")
 public class UserEntity {
 
